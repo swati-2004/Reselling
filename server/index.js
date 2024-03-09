@@ -10,6 +10,7 @@ import dotenv from "dotenv";
 
 // importing the routes
 import collegeRoutes from "./Routes/Colleges/CollegeRoutes.js";
+import userRoutes from "./Routes/Users/UserRoutes.js";
 
 // connfiguring the environment variables
 dotenv.config();
@@ -41,19 +42,19 @@ mongoose.connect(process.env.MONGO_URI,{
     useUnifiedTopology:true
 }).then(()=>{
     console.log("Database connected successfully");
+    // setting up the routes
+    try{
+        app.listen(PORT,()=>{
+            console.log(`Server is running on PORT ${PORT}`);
+        });
+    } catch(err){
+        console.log("something went wrong");
+    }
 }).catch((error)=>{
     console.log("Error in connecting to database",error.message);
 });
 
 
-// setting up the server
-try{
-    app.listen(PORT,()=>{
-        console.log(`Server is running on PORT ${PORT}`);
-    });
-} catch(err){
-    console.log("something went wrong");
-}
-
 //Setting up the routes
-app.use("/api/v1/colleges",collegeRoutes);
+// app.use("/api/v1/colleges",collegeRoutes);
+app.use("/api/v1/users",userRoutes);

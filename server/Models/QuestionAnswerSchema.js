@@ -8,10 +8,12 @@ const QuestionAnswerSchema = new mongoose.Schema({
     impressions:{
         type: Number,
         default: 0,
+        min: [0, 'Impressions can not be negative']
     },
     answers:{
         type: Number,
         default: 0,
+        min: [0, 'Answers can not be negative']
     },
     user_id:{
         type: mongoose.Schema.Types.ObjectId,
