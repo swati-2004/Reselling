@@ -56,5 +56,5 @@ mongoose.connect(process.env.MONGO_URI,{
 
 
 //Setting up the routes
-// app.use("/api/v1/colleges",collegeRoutes);
+app.use("/api/v1/colleges",collegeRoutes);
 app.use("/api/v1/users",userRoutes);
