@@ -1,6 +1,9 @@
 import User from "../../Models/UserSchema.js";
 import ValidateAll from "../../Utils/Validators/ValidateAll.js";
 import CryptoJs from "crypto-js";
+import jwt from "jsonwebtoken";
+
+
 
 const UserSingup = async (req, res) => {
     try {
@@ -17,7 +20,7 @@ const UserSingup = async (req, res) => {
         req.body.password = EncryptedPassword;
         let newUser = new User(req.body);
         await newUser.save();
-        res.cookie("token", jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, { expiresIn: "5d" }))
+        res.cookie("token", jwt.sign({ id: newUser._id,email:newUser.email }, process.env.JWT_SECRET, { expiresIn: "5d" }));
         newUser.password = undefined;
         return res.status(201).json({ success: true, message: "User created successfully", user: newUser });
     } catch (error) {
