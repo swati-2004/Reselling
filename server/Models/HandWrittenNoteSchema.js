@@ -13,6 +13,7 @@ const HandWrittenNoteSchema = new mongoose.Schema({
     selling_price:{
         type: Number,
         required: true,
+        min: [0, 'Selling price can not be negative']
     },
     file_url:{
         type: String,
@@ -25,6 +26,7 @@ const HandWrittenNoteSchema = new mongoose.Schema({
     number_of_pages:{
         type: Number,
         required: true,
+        min: [0, 'Number of pages can not be negative']
     },
     topics:{
         type: [String],
@@ -42,6 +44,7 @@ const HandWrittenNoteSchema = new mongoose.Schema({
     downloads:{
         type: Number,
         default: 0,
+        min: [0, 'Downloads can not be negative']
     },
     tags:{
         type:[String],

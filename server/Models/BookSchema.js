@@ -24,6 +24,7 @@ const BookSchema = new mongoose.Schema({
     quantity:{
         type: Number,
         default: 1,
+        min: [0, 'Quantity can not be less than 0'],
     },
     orginal_price:{
         type: Number,
@@ -54,20 +55,6 @@ const BookSchema = new mongoose.Schema({
     image:{
         type: String,
         required: true,
-    },
-    buyer_id:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-    },
-    payment_method:{
-        type: String,
-        enum: ["COD", "Prepaid"],
-        default: "COD",
-    },
-    delivery_mode:{
-        type: String,
-        enum: ["Self", "Courier"],
-        default: "Self",
     },
     location:{
         type: Object,
