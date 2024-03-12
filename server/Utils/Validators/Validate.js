@@ -13,7 +13,7 @@ export const ValidateName = function (name) {
     return { success: true, message: "Name is valid" };
 }
 
-export const validateEmail = function (email) {
+export const ValidateEmail = function (email) {
     if (!email) {
         return { success: false, message: "Email is required" };
     }
@@ -25,7 +25,7 @@ export const validateEmail = function (email) {
     return { success: true, message: "Email is valid" };
 }
 
-export const validateMobile = function (mobile) {
+export const ValidateMobile = function (mobile) {
     if (!mobile) {
         return { success: false, message: "Mobile is required" };
     }
@@ -124,8 +124,8 @@ export const ValidateNumber = function ValidateNumber(num) {
 
 const ValidatorsMapping = {
     "name": ValidateName,
-    "email": validateEmail,
-    "mobile": validateMobile,
+    "email": ValidateEmail,
+    "mobile": ValidateMobile,
     "pincode": ValidatePinCode,
     "password": ValidatePassword,
     "state": ValidateState,
