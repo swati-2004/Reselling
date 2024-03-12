@@ -122,6 +122,31 @@ export const ValidateNumber = function ValidateNumber(num) {
     return { success: true, message: "Field is valid" };
 }
 
+
+export const ValidateLocation = function (location) {
+    if (!location) {
+        return { success: false, message: "Location is required" };
+    }
+    let  {latitude, longitude} = location;
+    if (!latitude) {
+        return { success: false, message: "Latitude is required" };
+    }
+    if (!longitude) {
+        return { success: false, message: "Longitude is required" };
+    }
+
+    latitude = latitude?.toString()?.trim();
+    longitude = longitude?.toString()?.trim();
+    let pattern = /^-?\d*\.?\d+$/;
+    if (!pattern.test(latitude)) {
+        return { success: false, message: "Invalid Latitude" };
+    }
+    if (!pattern.test(longitude)) {
+        return { success: false, message: "Invalid Longitude" };
+    }
+    return { success: true, message: "Location is valid" };
+}
+
 const ValidatorsMapping = {
     "name": ValidateName,
     "email": ValidateEmail,
@@ -130,7 +155,8 @@ const ValidatorsMapping = {
     "password": ValidatePassword,
     "state": ValidateState,
     "string": ValidateString,
-    "number": ValidateNumber
+    "number": ValidateNumber,
+    "location": ValidateLocation
 }
 
 export default ValidatorsMapping;
